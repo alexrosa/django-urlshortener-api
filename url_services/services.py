@@ -31,7 +31,6 @@ class UrlShortenerService:
             url_to_validated = 'http://'+url_to_validated
 
         try:
-            print(url_to_validated)
             result = urlparse(url_to_validated)
             return all([result.scheme, result.netloc])
         except ValueError:

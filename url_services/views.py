@@ -83,6 +83,7 @@ class UrlServicesCreateView(APIView):
     schema = AutoSchema(manual_fields=[
         coreapi.Field('url', required=True, location='body', description='This method expecting a Json object like this: {"url": "www.website.com"}', schema=coreschema.String()),
     ])
+
     def post(self, request):
         body_unicode = request.body.decode('utf-8')
         body_data = json.loads(body_unicode)

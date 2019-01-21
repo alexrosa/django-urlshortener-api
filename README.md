@@ -15,7 +15,7 @@ $ docker build -t urlshortner .
 
 after that
 
-$ docker run --name urlshortener -p 8000:8000 -d urlshortener
+$ docker run --name urlshort -p 8000:8000 -d urlshortener
 ```
 
 # Installing Python on OSX (Pure Python):

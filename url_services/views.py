@@ -13,11 +13,11 @@ from url_services.services import UrlShortenerService
 from url_services.serializers import UrlShortenerSerializer
 from config import settings
 
-'''
-This module is responsible to the view.
-'''
 
 class UrlServicesListView(APIView):
+    """
+    This View is responsible to return an Json object with the URL Details
+    """
     _service_class = UrlShortenerService
 
     def get(self, request):
@@ -29,6 +29,9 @@ class UrlServicesListView(APIView):
 
 
 class UrlServicesDetailView(APIView):
+    """
+    This View is responsible to return an Json object with the URL Details
+    """
     _service_class = UrlShortenerService
     schema = AutoSchema()
 
@@ -45,6 +48,10 @@ class UrlServicesDetailView(APIView):
 
 
 class UrlServicesRedirectView(APIView):
+    """
+    This View is responsible to redirect the URL
+    """
+
     _service_class = UrlShortenerService
     schema = AutoSchema()
 
@@ -57,12 +64,18 @@ class UrlServicesRedirectView(APIView):
         result = _service.retrieve(short_url=base_url)
         if result:
             abs_url = result['absolute_url']
-            print('abs_url= '+abs_url)
-            return HttpResponseRedirect(abs_url)
+            if not abs_url.startswith('http'):
+                abs_url = 'http://'+abs_url
+
+            return HttpResponseRedirect(redirect_to=abs_url)
         return Response('Internal error!', status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class UrlServicesCreateView(APIView):
+    """
+    This View is responsible to storage and create an URL object
+    """
+
     media_type='application/json'
     _service_class = UrlShortenerService
     serializer_class = UrlShortenerSerializer

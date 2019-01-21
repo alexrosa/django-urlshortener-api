@@ -3,7 +3,22 @@ This solution was developed using Python 3 and Django with Django Rest Framework
 The main purpose with it was to show how it's easy and simple to build an application with Django.
 
 
-# Installing Python on OSX:
+# Installing Application by docker image:
+```
+firstly 
+ 
+$ cd urlshortner/
+
+and then
+ 
+$ docker build -t urlshortner .
+
+after that
+
+$ docker run --name urlshortener -p 8000:8000 -d urlshortener
+```
+
+# Installing Python on OSX (Pure Python):
 Please, first of all check if Python is installed in your system:
 
 ```
@@ -27,7 +42,7 @@ Now please, install the third-party
 ```
 $ pip install -r requirements.txt
 ```
-# Running the application
+# Running the application 
 Open your command line and go through the main application directory
 ```
 $ cd ../urlshortener
